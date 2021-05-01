@@ -1,33 +1,26 @@
 import React from 'react'
 
-export default function Permutations({godWord}) {
+export default function Permutations() {
 // RECURSION
     
-    function perms() {
+    function perms(string) {
         let arr = []
-        if (godWord.length === 0) {
+        if (string.length === 0) {
             return "";
         }
-        if (godWord.length === 1 ) {
-            return godWord;
+        if (string.length === 1 ) {
+            return string;
         }
     
         else {
-            for (let i = 0; i < godWord.length; i++) {
-                let firstLetter = godWord[i]
-                // console.log("arr", arr)
-
-                if (godWord.indexOf(firstLetter) !== i)
-                    continue;
+            for (let i = 0; i < string.length; i++) {
+                let firstLetter = string[i]
                 
-                let restOfWord = godWord.slice(0, i) + godWord.slice(i + 1, godWord.length)
+                let restOfWord = string.slice(0, i) + string.slice(i + 1, string.length)
 
                     for (let permutes of perms(restOfWord)) {
                         arr.push(firstLetter + permutes + " ")
                     }
-                    // for (let j = 0; j < restOfWord.length; j++) {
-                    //     arr.push(firstLetter + restOfWord + " ")
-                    // }
             }
             return arr;
         }
@@ -35,7 +28,7 @@ export default function Permutations({godWord}) {
 
     return (
         <div>
-            {perms(godWord)}
+            {perms('GOOD')}
         </div>
     )
 }
